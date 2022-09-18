@@ -72,3 +72,9 @@ Let's explain this command step by step:
     - `php artisan tinker`: This starts separate shell and allows us to interact with our laravel application throught command line.
 
     - `php artisan serve`: This will start our php development server with our project and we will be able to visit it in the browser. Using this command is the easiet way to develop laravel application without setting up complicated servers like apache or nginx locally.
+
+---
+
+## Routing
+
+visits page -> router -> controller -> response
