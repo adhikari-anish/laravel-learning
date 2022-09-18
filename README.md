@@ -78,3 +78,7 @@ Let's explain this command step by step:
 ## Routing
 
 visits page -> router -> controller -> response
+
+## Resources controller
+
+<img src="/readme_images/resources_controller.png" />
