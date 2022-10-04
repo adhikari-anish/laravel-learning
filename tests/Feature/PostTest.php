@@ -53,7 +53,8 @@ class PostTest extends TestCase
             'content' => 'At least 10 characters'
         ];
 
-        $this->post('/posts', $params)
+        $this->actingAs($this->user())
+            ->post('/posts', $params)
             ->assertStatus(302) // 302 is success for redirect
             ->assertSessionHas('status');
 
@@ -67,7 +68,8 @@ class PostTest extends TestCase
             'content' => 'x'
         ];
 
-        $this->post('/posts', $params)
+        $this->actingAs($this->user())
+            ->post('/posts', $params)
             ->assertStatus(302) // 302 is success for redirect
             ->assertSessionHas('errors');
 
@@ -91,7 +93,8 @@ class PostTest extends TestCase
             'content' => 'Content was changed'
         ];
 
-        $this->put("/posts/{$post->id}", $params)
+        $this->actingAs($this->user())
+            ->put("/posts/{$post->id}", $params)
             ->assertStatus(302) // 302 is success for redirect
             ->assertSessionHas('status');
 
@@ -112,7 +115,8 @@ class PostTest extends TestCase
             'content' => 'Content of the blog post'
         ]);
 
-        $this->delete("/posts/{$post->id}")
+        $this->actingAs($this->user())
+            ->delete("/posts/{$post->id}")
             ->assertStatus(302) // 302 is success for redirect
             ->assertSessionHas('status');
 
@@ -127,7 +131,9 @@ class PostTest extends TestCase
         // $post->content = 'Content of the blog post';
         // $post->save();
 
-        return BlogPost::factory()->newTitle()->create();
+        return BlogPost::factory()->newTitle()->create([
+            'content' => 'Content of the blog post'
+        ]);
 
         // return $post;
     }

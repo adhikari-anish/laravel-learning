@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')
+            ->only(['create', 'store', 'edit', 'update', 'destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +35,7 @@ class PostsController extends Controller
         // dd(DB::getQueryLog());
 
         return view(
-            'posts.index', 
+            'posts.index',
             ['posts' => BlogPost::withCount('comments')->get()]
         );
     }
