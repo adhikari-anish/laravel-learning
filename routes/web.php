@@ -22,7 +22,10 @@ use Illuminate\Support\Facades\Route;
 // Route::view('/contact', 'home.contact')->name('home.contact');
 
 Route::get('/', [HomeController::class, 'home'])
-    ->name('home.index');
+    ->name('home.index')
+    // ->middleware('auth')
+;
+
 Route::get('/contact', [HomeController::class, 'contact'])
     ->name('home.contact');
 
@@ -104,3 +107,5 @@ Route::prefix('/fun')->name('fun.')->group(function () use ($posts) {
         return response()->download(public_path('/daniel.jpg', 'face.jpg'));
     })->name('download');
 });
+
+Auth::routes();
