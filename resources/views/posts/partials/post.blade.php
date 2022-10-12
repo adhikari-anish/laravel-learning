@@ -12,12 +12,10 @@
   @endif
 </h3>
 
+<x-updated :date="$post->created_at" :name="$post->user->name" />
+
 <div class="mb-3">
   @if ($post->comments_count)
-    <p class="text-muted">
-      Added {{ $post->created_at->diffForHumans() }}
-      by {{ $post->user->name }}
-    </p>
     <p>{{ $post->comments_count }} comments</p>
   @else 
   <p>
